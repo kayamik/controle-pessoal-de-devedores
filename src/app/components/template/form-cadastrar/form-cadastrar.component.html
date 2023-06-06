@@ -4,86 +4,45 @@
   </blockquote>
 </figure>
 <main>
-<form>
-  <fieldset class="form-group">
-    <div class="row">
-      <legend class="col-form-label col-sm-2 pt-0">Tipo de Pessoa</legend>
+  <form #form="ngForm" (submit)="onSubmit()">
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-2 pt-0">Tipo de Pessoa</legend>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="inputTipoPessoa" id="inputTipoPessoa1" value="Física" [(ngModel)]="this.devedor.tipodepessoa">
+            <label class="form-check-label" for="inputTipoPessoa1">
+              Física
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="inputTipoPessoa" id="inputTipoPessoa2" value="Jurídica" [(ngModel)]="this.devedor.tipodepessoa">
+            <label class="form-check-label" for="inputTipoPessoa2">
+              Jurídica
+            </label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <div class="form-group row">
+      <label for="inputNomeRazaoSocial" class="col-sm-2 col-form-label">Nome / Razão Social</label>
       <div class="col-sm-10">
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-          <label class="form-check-label" for="gridRadios1">
-            Física
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-          <label class="form-check-label" for="gridRadios2">
-            Jurídica
-          </label>
-        </div>
+        <input type="text" class="form-control" id="inputNomeRazaoSocial" name="inputNomeRazaoSocial" placeholder="Digite o nome ou razão social" [(ngModel)]="this.devedor.nomeourazaosocial" >
       </div>
     </div>
-  </fieldset>
-  <div class="form-group row">
-    <label for="inputNomeRazaoSocial" class="col-sm-2 col-form-label">Nome / Razão Social</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputNomeRazaoSocial" placeholder="Digite o nome ou razão social">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputCpfCnpj" class="col-sm-2 col-form-label">CPF / CNPJ</label>
-    <div class="col-sm-10">
-      <input type="number" class="form-control" id="inputCpfCnpj" placeholder="Digite o CPF ou CNPJ">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputValor" class="col-sm-2 col-form-label">Valor Emprestado</label>
-    <div class="col-sm-10">
-      <input type="number" class="form-control" id="inputValor" placeholder="Digite o valor emprestado">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputDataEmprestimo" class="col-sm-2 col-form-label">Data do Empréstimo</label>
-    <div class="col-sm-10">
-      <input type="date" class="form-control" id="inputDataEmprestimo" placeholder="Digite a data do emprestimo">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputDataRecebimento" class="col-sm-2 col-form-label">Data da Devolução</label>
-    <div class="col-sm-10">
-      <input type="date" class="form-control" id="inputDataRecebimento"
-        placeholder="Digite a data combinada de devolução">
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-2">Status da Dívida</div>
-    <div class="col-sm-10">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck1">
-        <label class="form-check-label" for="gridCheck1">
-          Quitado
-        </label>
+    <div class="form-group row">
+      <label for="inputCpfCnpj" class="col-sm-2 col-form-label">CPF / CNPJ</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" id="inputCpfCnpj" name="inputCpfCnpj" placeholder="Digite o CPF ou CNPJ" [(ngModel)]="this.devedor.cpfoucnpj">
       </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-md-4">
-      <label for="inputState" class="form-label">Tipo de Pagamento</label>
-      <select id="inputState" class="form-select">
-        <option selected>Selecione...</option>
-        <option>Pix</option>
-        <option>Dinheiro</option>
-        <option>Débito</option>
-        <option>Crédito</option>
-      </select>
+    <p></p>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">ADICIONAR DÍVIDA</button>
+        <button type="submit" class="btn btn-primary">CADASTRAR</button>
+        <button type="submit" class="btn btn-secondary">LIMPAR</button>
+      </div>
     </div>
-  </div>
-  <p></p>
-  <div class="form-group row">
-    <div class="col-sm-10">
-      <button type="submit" class="btn btn-primary">CADASTRAR</button>
-      <button type="submit" class="btn btn-secondary">LIMPAR</button>
-    </div>
-  </div>
-</form>
+  </form>
 </main>
