@@ -7,21 +7,20 @@
   <table class="table">
     <thead>
       <tr>
+        <th scope="col">ID</th>
         <th scope="col">Nome</th>
-        <th scope="col">Dívida</th>
+        <th scope="col">Total</th>
+        <th scope="col">Quantidade</th>
         <th scope="col">Status</th>
       </tr>
     </thead>
-    <tbody class="table-group-divider">
-      <tr>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
+    <tbody>
+      <tr *ngFor="let d of this.devedores">
+        <td>{{ d.id}}</td>
+        <td>{{ d.nomeourazaosocial | uppercase }}</td>
+        <td>{{ d.totaldividas | currency: "BRL"  }}</td>
+        <td>{{ d.qtddividas}}</td>
+        <td>{{ d.statusdividas}}</td>
       </tr>
     </tbody>
   </table>

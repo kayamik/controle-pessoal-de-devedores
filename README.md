@@ -20,6 +20,10 @@ https://www.figma.com/file/wmhi6onVr5eHsoiVv7NHx8/Controle-Pessoal-de-Devedores?
 - [x] Construir páginas web com o conceito de componentes.
 - [x] Criar o layout da aplicação com componentes, ou seja, o cabeçalho e rodapé precisam ser componentes.
 - [x] Usar pelo menos dois tipos de data-binding (Interpolation, Property Binding, Event Binding e Two Way Data Binding).
+- [x] Passar dados via hierarquia de componentes, ou seja, usando @Input ou @Output.
+- [x] Mapear componentes à rotas no módulo de rotas.
+- [x] Criar navegação entre páginas por meio de rotas.
+- [x] Passar dados entre componentes que representam diferentes telas via parâmetros de rotas. 
 
 ## Manual de execução
 - Clonar o repositório com `git clone`

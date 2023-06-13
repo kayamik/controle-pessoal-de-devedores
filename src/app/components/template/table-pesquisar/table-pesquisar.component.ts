@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Divida } from 'src/app/model/divida';
 
 @Component({
   selector: 'app-table-pesquisar',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./table-pesquisar.component.css']
 })
 export class TablePesquisarComponent {
+  dividas!: Divida[];
 
+  constructor() {}
+
+  ngOnInit(): void {
+  }
+
+  onClickItem() {
+    //this.router.navigate(['/extrato/detalhes', t?.id]);
+    //this.router.navigate(['/extrato/detalhes', { id: t?.id }]);
+  }
 }

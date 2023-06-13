@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Devedor } from '../../../model/devedor';
-import { WebStorageUtil } from '../../../util/web-storage-util';
+import { Devedor } from 'src/app/model/devedor';
 
 @Component({
   selector: 'app-form-cadastrar',
@@ -11,23 +9,17 @@ import { WebStorageUtil } from '../../../util/web-storage-util';
 export class FormCadastrarComponent implements OnInit{
   devedor!: Devedor;
 
-  constructor() {}
+  constructor(
+  ) {}
 
   ngOnInit(): void {
-    this.devedor = new Devedor('', '', '');
+    this.devedor = new Devedor('', '', '', '', 0, 0, false);
   }
 
   onSubmit() {
-    alert(this.devedor.nomeourazaosocial);
-    alert(this.devedor.tipodepessoa);
   }
 
-  onButtonClickAgain() {
-    console.log('Usuário cadastrado com sucesso!');
-  }
-
-  onClickResetForm() {
-    this.devedor = new Devedor('', '', '');
+  onReset() {
     window.alert('Limpar!');
   }
 

@@ -4,7 +4,7 @@
   </blockquote>
 </figure>
 <main>
-  <form #form="ngForm" (submit)="onSubmit()">
+  <form #form="ngForm" (submit)="onSubmit()" (reset)="onReset()">
     <div class="form-group row">
       <label for="inputValor" class="col-sm-2 col-form-label">Valor Emprestado</label>
       <div class="col-sm-10">
@@ -55,9 +55,8 @@
     <div class="form-group row">
       <div class="col-sm-10">
         <button type="submit" class="btn btn-primary">ADICIONAR</button>
-        <button type="submit" class="btn btn-secondary">CANCELAR</button>
+        <button type="reset" class="btn btn-secondary">CANCELAR</button>
       </div>
     </div>
   </form>
-  <h3>Atividade 08 - Digite no campo valor emprestado {{valor}}, alteração, também, no cards Valor Pendente</h3>
 </main>

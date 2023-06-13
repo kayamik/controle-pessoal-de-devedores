@@ -12,6 +12,8 @@ import { FormAdicionarComponent } from './components/template/form-adicionar/for
 import { TablePrincipalComponent } from './components/template/table-principal/table-principal.component';
 import { TablePesquisarComponent } from './components/template/table-pesquisar/table-pesquisar.component';
 import { TextAboutComponent } from './components/template/text-about/text-about.component';
+import { PesquisarComponent } from './components/template/pesquisar/pesquisar.component';
+import { ResultadoComponent } from './components/template/resultado/resultado.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { TextAboutComponent } from './components/template/text-about/text-about.
     FormAdicionarComponent,
     TablePrincipalComponent,
     TablePesquisarComponent,
-    TextAboutComponent
+    TextAboutComponent,
+    PesquisarComponent,
+    ResultadoComponent
   ],
   imports: [
     BrowserModule,

@@ -26,6 +26,10 @@ export class FormAdicionarComponent implements OnInit{
     this.onValorChange();
   }
 
+  onReset() {
+    alert('Limpar');
+  }
+
   onValorChange() {
     this.valorChange.emit(this.valor);
   }
