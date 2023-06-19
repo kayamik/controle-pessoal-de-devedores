@@ -5,22 +5,19 @@ import { Devedor } from 'src/app/model/devedor';
 @Component({
   selector: 'app-pesquisar',
   templateUrl: './pesquisar.component.html',
-  styleUrls: ['./pesquisar.component.css']
+  styleUrls: ['./pesquisar.component.css'],
 })
 export class PesquisarComponent {
   devedor!: Devedor;
-  id!: string;
+  id: string = '';
 
-  constructor(
-    private router: Router
-  ) {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
-    this.devedor = new Devedor (this.id, '', '', '', 0, 0, false)
+    this.devedor = new Devedor('', '', '');
+    this.devedor.id = this.id;
     this.router.navigate(['resultado', this.devedor?.id]);
   }
 }
-

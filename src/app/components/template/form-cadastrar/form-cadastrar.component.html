@@ -4,46 +4,149 @@
   </blockquote>
 </figure>
 <main>
-  <form #form="ngForm" (submit)="onSubmit()" (reset)="onReset()">
+  <form
+    #form="ngForm"
+    (submit)="onSubmit()"
+    (reset)="onReset()"
+    *ngIf="!this.isSuccess"
+  >
     <fieldset class="form-group">
       <div class="row">
         <legend class="col-form-label col-sm-2 pt-0">Tipo de Pessoa</legend>
         <div class="col-sm-10">
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="inputTipoPessoa" id="inputTipoPessoa1" value="Física" [(ngModel)]="this.devedor.tipodepessoa">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inputTipoPessoa"
+              id="inputTipoPessoa1"
+              value="Física"
+              [(ngModel)]="this.devedor.tipodepessoa"
+              #tipodepessoa="ngModel"
+              required
+            />
             <label class="form-check-label" for="inputTipoPessoa1">
               Física
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="inputTipoPessoa" id="inputTipoPessoa2" value="Jurídica" [(ngModel)]="this.devedor.tipodepessoa">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inputTipoPessoa"
+              id="inputTipoPessoa2"
+              value="Jurídica"
+              [(ngModel)]="this.devedor.tipodepessoa"
+              #tipodepessoa="ngModel"
+              required
+            />
             <label class="form-check-label" for="inputTipoPessoa2">
               Jurídica
             </label>
           </div>
         </div>
       </div>
+      <div
+        class="text-danger"
+        [hidden]="tipodepessoa.valid || tipodepessoa.touched"
+      >
+        Por favor, selecione o tipo de pessoa acima.
+      </div>
     </fieldset>
+    <br />
     <div class="form-group row">
-      <label for="inputNomeRazaoSocial" class="col-sm-2 col-form-label">Nome / Razão Social</label>
+      <label for="inputNomeRazaoSocial" class="col-sm-2 col-form-label"
+        >Nome / Razão Social</label
+      >
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputNomeRazaoSocial" name="inputNomeRazaoSocial" placeholder="Digite o nome ou razão social" [(ngModel)]="this.devedor.nomeourazaosocial" >
+        <input
+          type="text"
+          class="form-control"
+          id="inputNomeRazaoSocial"
+          name="inputNomeRazaoSocial"
+          placeholder="Digite o nome ou razão social"
+          [(ngModel)]="this.devedor.nomeourazaosocial"
+          pattern="^(\s?[A-ZÀ-Ú][a-zà-ú]*)+(\s[a-zà-ú]*)?(\s[A-ZÀ-Ú][a-zà-ú]*)+"
+          #nomeourazaosocial="ngModel"
+          required
+        />
+        <div
+          class="text-danger"
+          [hidden]="nomeourazaosocial.valid || nomeourazaosocial.untouched"
+        >
+          Por favor, informe o nome ou razão social completo.
+        </div>
       </div>
     </div>
-    <div class="form-group row">
-      <label for="inputCpfCnpj" class="col-sm-2 col-form-label">CPF / CNPJ</label>
+    <br />
+    <div class="form-group row" *ngIf="this.devedor.tipodepessoa == 'Física'">
+      <label for="inputCpfCnpj" class="col-sm-2 col-form-label">CPF</label>
       <div class="col-sm-10">
-        <input type="number" class="form-control" id="inputCpfCnpj" name="inputCpfCnpj" placeholder="Digite o CPF ou CNPJ" [(ngModel)]="this.devedor.cpfoucnpj">
+        <input
+          type="string"
+          class="form-control"
+          id="inputCpfCnpj"
+          name="inputCpfCnpj"
+          placeholder="Digite o CPF seguindo o padrão XXX.XXX.XXX-XX"
+          [(ngModel)]="this.devedor.cpfoucnpj"
+          pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+          #cpfoucnpj="ngModel"
+          required
+        />
+        <div
+          class="text-danger"
+          [hidden]="cpfoucnpj.valid || cpfoucnpj.untouched"
+        >
+          Por favor, informe o CPF corretamente, seguindo o padrão
+          XXX.XXX.XXX-XX.
+        </div>
+      </div>
+    </div>
+    <div class="form-group row" *ngIf="this.devedor.tipodepessoa == 'Jurídica'">
+      <label for="inputCpfCnpj" class="col-sm-2 col-form-label">CNPJ</label>
+      <div class="col-sm-10">
+        <input
+          type="string"
+          class="form-control"
+          id="inputCpfCnpj"
+          name="inputCpfCnpj"
+          placeholder="Digite o CNPJ seguindo o padrão XX.XXX.XXX/0001-XX"
+          [(ngModel)]="this.devedor.cpfoucnpj"
+          pattern="\d{2}\.\d{3}\.\d{3}/0001-\d{2}"
+          #cpfoucnpj="ngModel"
+          required
+        />
+        <div
+          class="text-danger"
+          [hidden]="cpfoucnpj.valid || cpfoucnpj.untouched"
+        >
+          Por favor, informe o CNPJ corretamente, seguindo o padrão
+          XX.XXX.XXX/0001-XX.
+        </div>
       </div>
     </div>
     <p></p>
     <div class="form-group row">
       <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary">CADASTRAR</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+          CADASTRAR
+        </button>
         <button type="reset" class="btn btn-secondary">LIMPAR</button>
       </div>
     </div>
   </form>
-  <br>
-  <button class="btn btn-dark" [routerLink]="['/adicionar']">ADICIONAR DÍVIDA</button>
+  <br />
+  <div [hidden]="!this.isSuccess">
+    <div class="badge bg-primary text-wrap">
+      <h3>
+        Usuário {{ this.nometemp }} adicionado com sucesso, caso deseje
+        adicionar alguma divida clique no botão abaixo.
+      </h3>
+    </div>
+    <br />
+    <br />
+    <button class="btn btn-success" (click)="onDividas()">
+      ADICIONAR DÍVIDA
+    </button>
+  </div>
 </main>

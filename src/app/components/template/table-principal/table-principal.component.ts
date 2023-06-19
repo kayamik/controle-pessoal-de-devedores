@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Devedor } from 'src/app/model/devedor';
 
 @Component({
@@ -6,16 +6,14 @@ import { Devedor } from 'src/app/model/devedor';
   templateUrl: './table-principal.component.html',
   styleUrls: ['./table-principal.component.css'],
 })
-export class TablePrincipalComponent {
-  @Input() devedores: Devedor[] = [];
+export class TablePrincipalComponent{
+  devedor!: Devedor;
+  devedores: Devedor[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
+    this.devedores = JSON.parse(localStorage.getItem('devedores') || '{}');
   }
 
-  onClickItem() {
-    //this.router.navigate(['/extrato/detalhes', t?.id]);
-    //this.router.navigate(['/extrato/detalhes', { id: t?.id }]);
-  }
 }

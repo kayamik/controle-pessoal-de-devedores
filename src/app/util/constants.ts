@@ -1,4 +1,6 @@
 export class Constants {
-  public static readonly USERS_KEY = 'users';
-  public static readonly USERNAME_KEY = 'default.user';
+  public static readonly DEVEDORES_KEY = 'devedores';
+  public static readonly DEVEDOR_KEY = 'devedores';
+  public static readonly DIVIDAS_KEY = 'dividas';
+  public static readonly DIVIDA_KEY = 'divida';
 }

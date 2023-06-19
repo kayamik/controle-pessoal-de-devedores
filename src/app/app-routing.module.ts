@@ -13,7 +13,8 @@ const routes: Routes = [
   { path: 'cadastrar', component: FormCadastrarComponent},
   { path: 'pesquisar', component: PesquisarComponent},
   { path: 'resultado/:id', component: ResultadoComponent},
-  { path: 'adicionar', component: FormAdicionarComponent},
+  // { path: 'adicionar', component: FormAdicionarComponent},
+  { path: 'adicionar/:id', component: FormAdicionarComponent},
   { path: 'sobre', component: TextAboutComponent},
 ];
 

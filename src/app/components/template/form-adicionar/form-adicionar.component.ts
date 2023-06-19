@@ -1,37 +1,125 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { Divida } from '../../../model/divida';
-import { WebStorageUtil } from '../../../util/web-storage-util';
+import { Divida } from 'src/app/model/divida';
+import { NgForm } from '@angular/forms';
+import { AdicionarStorageService } from './form-adicionar.service';
+import { Shared } from 'src/app/util/shared';
 
 @Component({
   selector: 'app-form-adicionar',
   templateUrl: './form-adicionar.component.html',
-  styleUrls: ['./form-adicionar.component.css']
+  styleUrls: ['./form-adicionar.component.css'],
 })
-export class FormAdicionarComponent implements OnInit{
+export class FormAdicionarComponent {
+  @ViewChild('form') form!: NgForm;
+
   divida!: Divida;
+  dividas: Divida[] = [];
 
-  @Input() valor!: number;
-  @Output() valorChange = new EventEmitter<number>();
+  isSubmitted!: boolean;
+  isShowMessage: boolean = false;
+  isSuccess!: boolean;
+  message!: string;
 
-  constructor() {}
+  constructor(private adicionarService: AdicionarStorageService) {}
 
   ngOnInit(): void {
-    this.divida = new Divida(0, new Date(), new Date(), false, 'null');
+    Shared.initializeWebStorage();
+    this.divida = new Divida(0, new Date(), new Date(), false, '');
+    this.dividas = this.adicionarService.getUsers();
   }
 
   onSubmit() {
-    alert(this.divida.valordoemprestimo);
-    alert(this.divida.datadadevolucao);
-    this.onValorChange();
+    this.isSubmitted = true;
+    if (!this.adicionarService.isExist(this.divida.id)) {
+      this.adicionarService.save(this.divida);
+    } else {
+      this.adicionarService.update(this.divida);
+    }
+    this.isShowMessage = true;
+    this.isSuccess = true;
+    this.message = 'Dívida cadastrada com sucesso';
+
+    this.form.reset();
+    this.divida = new Divida(0, new Date(), new Date(), false, '');
+
+    this.dividas = this.adicionarService.getUsers();
   }
 
   onReset() {
-    alert('Limpar');
+    this.divida = new Divida(0, new Date(), new Date(), false, '');
+    this.form.reset();
   }
 
-  onValorChange() {
-    this.valorChange.emit(this.valor);
+  onEdit(divida: Divida) {
+    //this.divida = Divida;
+    let clone = divida.clone(divida);
+    this.divida = clone;
   }
 
+  onDelete(id: string) {
+    let confirmation = window.confirm(
+      'Deseja realmente excluir a divida ' + id
+    );
+    if (!confirmation) {
+      return;
+    }
+    let response: boolean = this.adicionarService.delete(id);
+    this.isShowMessage = true;
+    this.isSuccess = response;
+    if (response) {
+      this.message = 'Excluido com sucesso!';
+    } else {
+      this.message = 'A dívida não pode ser removido!';
+    }
+    this.dividas = this.adicionarService.getUsers();
+  }
 }
+
+//   divida!: Divida;
+//   dividas: Divida[] = [];
+//   devedor!: Devedor;
+//   devedores: Devedor[] = [];
+//   filtrodevedores: Devedor[] = [];
+//   valoremprestimo: number = 0;
+//   datadoemprestimo!: Date;
+//   datadadevolucao!: Date;
+//   quitado: boolean = false;
+//   tipodepagamento: string = '';
+
+//   constructor(private route: ActivatedRoute) {}
+
+//   ngOnInit(): void {}
+
+//   onSubmit() {
+//     this.divida = new Divida(
+//       this.valoremprestimo,
+//       this.datadoemprestimo,
+//       this.datadadevolucao,
+//       this.quitado,
+//       this.tipodepagamento
+//     );
+//     this.filtrodevedores = JSON.parse(
+//       localStorage.getItem('lista-devedores') || '{}'
+//     );
+//     let idParam: string = this.route.snapshot.paramMap.get('id')!;
+//     this.filtrodevedores = this.filtrodevedores.filter((t) => {
+//       return t.id === idParam;
+//     });
+//     this.devedor = this.filtrodevedores[0];
+//     this.devedor.dividas.push(this.divida);
+//     this.devedor.totaldividas = this.devedor.totaldividas + this.valoremprestimo;
+//     this.devedores = JSON.parse(
+//       localStorage.getItem('lista-devedores') || '{}'
+//     );
+//     this.devedores = this.devedores.filter((t) => {
+//       return t.id !== this.devedor.id;
+//     });
+//     this.devedores.push(this.devedor);
+//     localStorage.setItem('lista-devedores', JSON.stringify(this.devedores));
+//   }
+
+//   onReset() {
+//     window.alert('Limpar!');
+//   }
+// }

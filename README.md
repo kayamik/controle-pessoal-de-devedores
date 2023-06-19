@@ -24,6 +24,14 @@ https://www.figma.com/file/wmhi6onVr5eHsoiVv7NHx8/Controle-Pessoal-de-Devedores?
 - [x] Mapear componentes à rotas no módulo de rotas.
 - [x] Criar navegação entre páginas por meio de rotas.
 - [x] Passar dados entre componentes que representam diferentes telas via parâmetros de rotas. 
+- [x] Validar campos do formulário com REGEX e apresentar os erros.
+- [x] Desabilitar o botão de submit enquanto o formulário está inválido.
+- [x]
+- [x]
+- [x] Apresentar uma lista de dados com a diretiva estrutural ngFor.
+- [x] Usar a diretiva ngIf.
+- [x]
+- [x]
 
 ## Manual de execução
 - Clonar o repositório com `git clone`

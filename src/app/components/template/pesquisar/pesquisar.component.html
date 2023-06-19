@@ -5,14 +5,17 @@
 </figure>
 <main>
   <form class="d-flex" role="search" #form="ngForm" (submit)="onSubmit()">
-    <input class="form-control me-2" type="search" id="inputPesquisa" name="inputPesquisa" placeholder="Digite a ID do devedor" aria-label="Search" [(ngModel)]="this.id">
+    <input
+      class="form-control me-2"
+      type="search"
+      id="inputPesquisa"
+      name="inputPesquisa"
+      placeholder="Digite a ID do devedor"
+      aria-label="Search"
+      [(ngModel)]="this.id"
+    />
     <button class="btn btn-outline-dark" type="submit">PESQUISAR</button>
   </form>
 </main>
-<br>
-<figure class="text-center">
-  <blockquote class="blockquote">
-    <p>Dados do Cadastro</p>
-  </blockquote>
-</figure>
+<br />
 <app-resultado></app-resultado>

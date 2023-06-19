@@ -1,17 +1,36 @@
-<main  *ngIf="this.devedores && this.devedores.length > 0">
+<main *ngIf="this.devedores && this.devedores.length > 0">
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <p>Dados do Cadastro</p>
+    </blockquote>
+  </figure>
   <form #form="ngForm" (submit)="onSubmit()">
     <fieldset class="form-group">
       <div class="row">
         <legend class="col-form-label col-sm-2 pt-0">Tipo de Pessoa</legend>
         <div class="col-sm-10">
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="inputTipoPessoa" id="inputTipoPessoa1" value="Física" [(ngModel)]="this.devedor.tipodepessoa">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inputTipoPessoa"
+              id="inputTipoPessoa1"
+              value="Física"
+              [(ngModel)]="this.devedor.tipodepessoa"
+            />
             <label class="form-check-label" for="inputTipoPessoa1">
               Física
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="inputTipoPessoa" id="inputTipoPessoa2" value="Jurídica" [(ngModel)]="this.devedor.tipodepessoa">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inputTipoPessoa"
+              id="inputTipoPessoa2"
+              value="Jurídica"
+              [(ngModel)]="this.devedor.tipodepessoa"
+            />
             <label class="form-check-label" for="inputTipoPessoa2">
               Jurídica
             </label>
@@ -20,15 +39,33 @@
       </div>
     </fieldset>
     <div class="form-group row">
-      <label for="inputNomeRazaoSocial" class="col-sm-2 col-form-label">Nome / Razão Social</label>
+      <label for="inputNomeRazaoSocial" class="col-sm-2 col-form-label"
+        >Nome / Razão Social</label
+      >
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputNomeRazaoSocial" name="inputNomeRazaoSocial" placeholder="Digite o nome ou razão social" [(ngModel)]="this.devedor.nomeourazaosocial" >
+        <input
+          type="text"
+          class="form-control"
+          id="inputNomeRazaoSocial"
+          name="inputNomeRazaoSocial"
+          placeholder="Digite o nome ou razão social"
+          [(ngModel)]="this.devedor.nomeourazaosocial"
+        />
       </div>
     </div>
     <div class="form-group row">
-      <label for="inputCpfCnpj" class="col-sm-2 col-form-label">CPF / CNPJ</label>
+      <label for="inputCpfCnpj" class="col-sm-2 col-form-label"
+        >CPF / CNPJ</label
+      >
       <div class="col-sm-10">
-        <input type="number" class="form-control" id="inputCpfCnpj" name="inputCpfCnpj" placeholder="Digite o CPF ou CNPJ" [(ngModel)]="this.devedor.cpfoucnpj">
+        <input
+          type="text"
+          class="form-control"
+          id="inputCpfCnpj"
+          name="inputCpfCnpj"
+          placeholder="Digite o CPF ou CNPJ"
+          [(ngModel)]="this.devedor.cpfoucnpj"
+        />
       </div>
     </div>
     <p></p>
@@ -39,3 +76,5 @@
     </div>
   </form>
 </main>
+
+<app-table-pesquisar></app-table-pesquisar>

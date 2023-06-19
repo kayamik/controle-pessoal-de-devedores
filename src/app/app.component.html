@@ -2,20 +2,29 @@
   <app-navbar></app-navbar>
 </header>
 
-<h1>
-  Teste de parametros foi colocado na guia pesquisar, basta digitar a ID do
-  Devedor listado abaixo que ele retornara os dados na tela, em Dados de
-  Cadastro
-</h1>
+<app-cards [valor]="this.user.totalemprestado"></app-cards>
 
-<app-cards [valor]="valorTotal"></app-cards>
+<h1>A atividade foi adicionada em cadastrar</h1>
 
 <main>
   <router-outlet></router-outlet>
 </main>
 
-<app-table-principal [devedores]="devedores"></app-table-principal>
+<app-footer></app-footer>
 
+<!-- <app-form-cadastrar></app-form-cadastrar>
+<app-cards [valor]="this.user.totalemprestado"></app-cards>
+<app-table-principal></app-table-principal>
+<app-table-pesquisar></app-table-pesquisar>
+<app-form-adicionar></app-form-adicionar>
+<app-cards></app-cards>
+<app-form-adicionar [(valor)] = "valorTotal"></app-form-adicionar>
+<app-text-about></app-text-about>
+<br>
+<h1>Teste @INPUT e @OUTPUT, observe que o valor aparece no campo Valor Emprestado, além, também, do card Valor Pendente</h1>
+<app-form-adicionar [(valor)] = "valorTotal"></app-form-adicionar>
+<input type="number" class="form-control"name="inputValor"
+placeholder="Digite o teste aqui" [(ngModel)]="valorTotal">
 <h1>
   Teste @INPUT e @OUTPUT, para executar digite no campo "digite o teste aqui" próximo ao
   copyright ou escreva no campo Valor Emprestado em Adicionar Dívidas, observe
@@ -30,19 +39,4 @@
   placeholder="Digite o teste aqui"
   [(ngModel)]="valorTotal"
 />
-
-<app-footer></app-footer>
-
-<!-- <app-form-cadastrar></app-form-cadastrar>
-<app-table-principal></app-table-principal>
-<app-table-pesquisar></app-table-pesquisar>
-<app-form-adicionar></app-form-adicionar>
-<app-cards></app-cards>
-<app-form-adicionar [(valor)] = "valorTotal"></app-form-adicionar>
-<app-text-about></app-text-about>
-<br>
-<h1>Teste @INPUT e @OUTPUT, observe que o valor aparece no campo Valor Emprestado, além, também, do card Valor Pendente</h1>
-<app-form-adicionar [(valor)] = "valorTotal"></app-form-adicionar>
-<input type="number" class="form-control"name="inputValor"
-placeholder="Digite o teste aqui" [(ngModel)]="valorTotal">
 -->
