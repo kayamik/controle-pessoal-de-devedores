@@ -3,10 +3,7 @@ import { Injectable } from '@angular/core';
 import { WebStorageUtil } from 'src/app/util/web-storage-util';
 import { Devedor } from 'src/app/model/devedor';
 
-@Injectable({
-  providedIn: 'root',
-})
-
+@Injectable()
 export class CadastrarStorageService {
   devedores!: Devedor[];
 
@@ -50,5 +47,4 @@ export class CadastrarStorageService {
     this.devedores = WebStorageUtil.get(Constants.DEVEDORES_KEY);
     return this.devedores;
   }
-
 }

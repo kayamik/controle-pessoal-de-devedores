@@ -1,55 +1,31 @@
-import { Constants } from 'src/app/util/constants';
 import { Injectable } from '@angular/core';
-import { WebStorageUtil } from 'src/app/util/web-storage-util';
 import { Divida } from 'src/app/model/divida';
+import { FormAdicionarPromiseService } from './form-adicionar-promise.service';
+import { Devedor } from 'src/app/model/devedor';
 
 @Injectable({
   providedIn: 'root',
 })
-
-export class AdicionarStorageService {
+export class AdicionarService {
+  dividas: Divida[] = [];
   divida!: Divida;
-  dividas!: Divida[];
 
-  constructor() {
-    this.dividas = WebStorageUtil.get(Constants.DIVIDAS_KEY);
-  }
+  constructor(
+    private formAdicionarPromiseService: FormAdicionarPromiseService
+  ) {}
 
-  save(divida: Divida) {
-    this.dividas = WebStorageUtil.get(Constants.DIVIDAS_KEY);
-    this.dividas.push(divida);
-    WebStorageUtil.set(Constants.DIVIDAS_KEY, this.dividas);
-  }
-
-  update(divida: Divida) {
-    this.dividas = WebStorageUtil.get(Constants.DIVIDAS_KEY);
-    this.delete(divida.id);
-    this.save(divida);
-  }
-
-  delete(id: string): boolean {
-    this.dividas = WebStorageUtil.get(Constants.DIVIDAS_KEY);
-    this.dividas = this.dividas.filter((d) => {
-      return d.id?.valueOf() != id?.valueOf();
-    });
-
-    WebStorageUtil.set(Constants.DIVIDAS_KEY, this.dividas);
-    return true;
-  }
-
-  isExist(value: string): boolean {
-    this.dividas = WebStorageUtil.get(Constants.DIVIDAS_KEY);
-    for (let d of this.dividas) {
-      if (d.id?.valueOf() == value?.valueOf()) {
-        return true;
+  save(devedor: Devedor, divida: Divida): Promise<Divida> {
+    const d = new Promise<Divida>((resolve, reject) => {
+      if (divida.valordoemprestimo < 1) {
+        reject('O valor emprestado deve ser maior que R$0,00!');
+      } else {
+        setTimeout(() => {
+          divida.devedorId = devedor.id;
+          this.formAdicionarPromiseService.save(divida);
+          resolve(divida);
+        }, 5000);
       }
-    }
-    return false;
+    });
+    return d;
   }
-
-  getUsers(): Divida[] {
-    this.dividas = WebStorageUtil.get(Constants.DIVIDAS_KEY);
-    return this.dividas;
-  }
-
 }

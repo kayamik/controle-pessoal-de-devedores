@@ -16,12 +16,4 @@ export class AppComponent {
     this.user = new User();
     this.user.totalemprestado = 0;
   }
-
-  // ngOnInit(): void {
-  //     this.user = new User();
-  //     this.devedores = JSON.parse(localStorage.getItem('lista-devedores') || '{}');
-  //     this.user.totalemprestado = this.devedores.reduce(function(accumulator,object){
-  //       return accumulator + object.totaldividas
-  //     },0);
-  //   }
 }

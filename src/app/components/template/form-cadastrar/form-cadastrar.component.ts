@@ -9,13 +9,14 @@ import { Router } from '@angular/router';
   selector: 'app-form-cadastrar',
   templateUrl: './form-cadastrar.component.html',
   styleUrls: ['./form-cadastrar.component.css'],
+  providers: [CadastrarStorageService],
 })
 export class FormCadastrarComponent implements OnInit {
   @ViewChild('form') form!: NgForm;
 
   devedor!: Devedor;
+  devedortemp!: Devedor;
   devedores: Devedor[] = [];
-  nometemp!: string;
 
   isSubmitted!: boolean;
   isShowMessage: boolean = false;
@@ -30,6 +31,7 @@ export class FormCadastrarComponent implements OnInit {
   ngOnInit(): void {
     Shared.initializeWebStorage();
     this.devedor = new Devedor('', '', '');
+    this.devedortemp = new Devedor('', '', '');
     this.devedores = this.cadastrarService.getUsers();
   }
 
@@ -44,7 +46,7 @@ export class FormCadastrarComponent implements OnInit {
     this.isSuccess = true;
     this.message = 'Devedor adicionado com sucesso';
 
-    this.nometemp = this.devedor.nomeourazaosocial;
+    this.devedortemp = this.devedor;
 
     this.form.reset();
     this.devedor = new Devedor('', '', '');
@@ -82,33 +84,6 @@ export class FormCadastrarComponent implements OnInit {
   }
 
   onDividas() {
-    this.router.navigate(['adicionar', this.devedor?.id]);
+    this.router.navigate(['adicionar', this.devedortemp?.id]);
   }
 }
-
-// devedor!: Devedor;
-// devedores: Devedor [] = [];
-// tipodepessoa: string = '';
-// nomeourazaosocial: string = '';
-// cpfoucnpj: string = '';
-
-// constructor( private router: Router ) {}
-
-// ngOnInit(): void {
-// }
-
-// onSubmit() {
-//   this.devedor = new Devedor (this.tipodepessoa, this.nomeourazaosocial, this.cpfoucnpj, 0, 0, false);
-//   //Verificar se já existe para não ocorrer erro, corrigir depois
-//   this.devedores = JSON.parse(localStorage.getItem('lista-devedores') || '{}');
-//   this.devedores.push(this.devedor);
-//   localStorage.setItem('lista-devedores', JSON.stringify(this.devedores));
-// }
-
-// onReset() {
-//   window.alert('Limpar!');
-// }
-
-// onDividas() {
-//   this.router.navigate(['adicionar', this.devedor?.id]);
-// }

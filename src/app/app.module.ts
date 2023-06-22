@@ -14,6 +14,7 @@ import { TablePesquisarComponent } from './components/template/table-pesquisar/t
 import { TextAboutComponent } from './components/template/text-about/text-about.component';
 import { PesquisarComponent } from './components/template/pesquisar/pesquisar.component';
 import { ResultadoComponent } from './components/template/resultado/resultado.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ResultadoComponent } from './components/template/resultado/resultado.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

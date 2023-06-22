@@ -4,39 +4,13 @@
 
 <app-cards [valor]="this.user.totalemprestado"></app-cards>
 
-<h1>A atividade foi adicionada em cadastrar</h1>
+<h1>
+  A atividade foi adicionada em adicionar dívida, para isso é necessário
+  cadastrar um devedor e após clicar em adicionar dívida
+</h1>
 
 <main>
   <router-outlet></router-outlet>
 </main>
 
 <app-footer></app-footer>
-
-<!-- <app-form-cadastrar></app-form-cadastrar>
-<app-cards [valor]="this.user.totalemprestado"></app-cards>
-<app-table-principal></app-table-principal>
-<app-table-pesquisar></app-table-pesquisar>
-<app-form-adicionar></app-form-adicionar>
-<app-cards></app-cards>
-<app-form-adicionar [(valor)] = "valorTotal"></app-form-adicionar>
-<app-text-about></app-text-about>
-<br>
-<h1>Teste @INPUT e @OUTPUT, observe que o valor aparece no campo Valor Emprestado, além, também, do card Valor Pendente</h1>
-<app-form-adicionar [(valor)] = "valorTotal"></app-form-adicionar>
-<input type="number" class="form-control"name="inputValor"
-placeholder="Digite o teste aqui" [(ngModel)]="valorTotal">
-<h1>
-  Teste @INPUT e @OUTPUT, para executar digite no campo "digite o teste aqui" próximo ao
-  copyright ou escreva no campo Valor Emprestado em Adicionar Dívidas, observe
-  que o valor aparece no campo Valor Emprestado, além, também, do card Valor
-  Pendente
-</h1>
-<app-form-adicionar [(valor)]="valorTotal"></app-form-adicionar>
-<input
-  type="number"
-  class="form-control"
-  name="inputValor"
-  placeholder="Digite o teste aqui"
-  [(ngModel)]="valorTotal"
-/>
--->

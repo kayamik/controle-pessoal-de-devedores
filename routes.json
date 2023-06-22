@@ -1,0 +1,4 @@
+{
+  "/dividas/id/:t": "/dividas?id=:t",
+  "/dividas": "/dividas"
+}

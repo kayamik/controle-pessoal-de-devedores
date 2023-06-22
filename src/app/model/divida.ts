@@ -5,6 +5,7 @@ export class Divida {
   datadadevolucao!: Date;
   quitado!: boolean;
   tipodepagamento!: string;
+  devedorId!: string;
   constructor(
     valordoemprestimo: number,
     datadoemprestimo: Date,
@@ -20,20 +21,4 @@ export class Divida {
     this.tipodepagamento = tipodepagamento;
   }
 
-  public clone(divida: Divida) {
-    let d: Divida = new Divida(
-      divida.valordoemprestimo,
-      divida.datadoemprestimo,
-      divida.datadadevolucao,
-      divida.quitado,
-      divida.tipodepagamento,
-    );
-    d.valordoemprestimo = divida.valordoemprestimo;
-    d.datadoemprestimo = divida.datadoemprestimo;
-    d.datadadevolucao = divida.datadadevolucao;
-    d.datadadevolucao = divida.datadadevolucao;
-    d.quitado = divida.quitado;
-    d.tipodepagamento = divida.tipodepagamento;
-    return d;
-  }
 }
