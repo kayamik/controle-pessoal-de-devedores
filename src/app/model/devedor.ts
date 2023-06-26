@@ -24,20 +24,4 @@ export class Devedor {
     this.statusdividas = false;
     this.dividas = [];
   }
-
-  public clone(devedor: Devedor) {
-    let d: Devedor = new Devedor(
-      devedor.tipodepessoa,
-      devedor.nomeourazaosocial,
-      devedor.cpfoucnpj
-    );
-    d.tipodepessoa = devedor.tipodepessoa;
-    d.nomeourazaosocial = devedor.nomeourazaosocial;
-    d.cpfoucnpj = devedor.cpfoucnpj;
-    d.totaldividas = devedor.totaldividas;
-    d.qtddividas = devedor.qtddividas;
-    d.statusdividas = devedor.statusdividas;
-    d.dividas = devedor.dividas;
-    return d;
-  }
 }

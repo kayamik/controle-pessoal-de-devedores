@@ -8,18 +8,17 @@ import { PesquisarComponent } from './components/template/pesquisar/pesquisar.co
 import { ResultadoComponent } from './components/template/resultado/resultado.component';
 
 const routes: Routes = [
-  { path: '', component: TablePrincipalComponent},
-  { path: 'principal', component: TablePrincipalComponent},
-  { path: 'cadastrar', component: FormCadastrarComponent},
-  { path: 'pesquisar', component: PesquisarComponent},
-  { path: 'resultado/:id', component: ResultadoComponent},
-  // { path: 'adicionar', component: FormAdicionarComponent},
-  { path: 'adicionar/:id', component: FormAdicionarComponent},
-  { path: 'sobre', component: TextAboutComponent},
+  { path: '', component: TablePrincipalComponent },
+  { path: 'principal', component: TablePrincipalComponent },
+  { path: 'cadastrar', component: FormCadastrarComponent },
+  { path: 'pesquisar', component: PesquisarComponent },
+  { path: 'resultado/:id', component: ResultadoComponent },
+  { path: 'adicionar/:id', component: FormAdicionarComponent },
+  { path: 'sobre', component: TextAboutComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

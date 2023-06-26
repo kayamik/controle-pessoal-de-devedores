@@ -32,12 +32,12 @@ export class FormCadastrarComponent implements OnInit {
     Shared.initializeWebStorage();
     this.devedor = new Devedor('', '', '');
     this.devedortemp = new Devedor('', '', '');
-    this.devedores = this.cadastrarService.getUsers();
+    this.devedores = this.cadastrarService.getDevedores();
   }
 
   onSubmit() {
     this.isSubmitted = true;
-    if (!this.cadastrarService.isExist(this.devedor.nomeourazaosocial)) {
+    if (!this.cadastrarService.isExist(this.devedor.id)) {
       this.cadastrarService.save(this.devedor);
     } else {
       this.cadastrarService.update(this.devedor);
@@ -51,7 +51,7 @@ export class FormCadastrarComponent implements OnInit {
     this.form.reset();
     this.devedor = new Devedor('', '', '');
 
-    this.devedores = this.cadastrarService.getUsers();
+    this.devedores = this.cadastrarService.getDevedores();
   }
 
   onReset() {
@@ -59,28 +59,12 @@ export class FormCadastrarComponent implements OnInit {
     this.form.reset();
   }
 
-  onEdit(devedor: Devedor) {
-    //this.devedor = devedor;
-    let clone = devedor.clone(devedor);
-    this.devedor = clone;
+  onPesquisar() {
+    this.router.navigate(['resultado', this.devedortemp?.id]);
   }
 
-  onDelete(nomeourazaosocial: string) {
-    let confirmation = window.confirm(
-      'Deseja realmente excluir o devedor ' + nomeourazaosocial
-    );
-    if (!confirmation) {
-      return;
-    }
-    let response: boolean = this.cadastrarService.delete(nomeourazaosocial);
-    this.isShowMessage = true;
-    this.isSuccess = response;
-    if (response) {
-      this.message = 'Excluido com sucesso!';
-    } else {
-      this.message = 'O devedor não pode ser removido!';
-    }
-    this.devedores = this.cadastrarService.getUsers();
+  onVoltar() {
+    window. history. back();
   }
 
   onDividas() {

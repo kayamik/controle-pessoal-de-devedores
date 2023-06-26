@@ -1,31 +1,73 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { RoutesAPI } from 'src/app/util/routes-api';
+import { ErrorUtil } from 'src/app/util/error-util';
 import { Divida } from 'src/app/model/divida';
-import { FormAdicionarPromiseService } from './form-adicionar-promise.service';
-import { Devedor } from 'src/app/model/devedor';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdicionarService {
-  dividas: Divida[] = [];
-  divida!: Divida;
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(
-    private formAdicionarPromiseService: FormAdicionarPromiseService
-  ) {}
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
 
-  save(devedor: Devedor, divida: Divida): Promise<Divida> {
-    const d = new Promise<Divida>((resolve, reject) => {
-      if (divida.valordoemprestimo < 1) {
-        reject('O valor emprestado deve ser maior que R$0,00!');
-      } else {
-        setTimeout(() => {
-          divida.devedorId = devedor.id;
-          this.formAdicionarPromiseService.save(divida);
-          resolve(divida);
-        }, 5000);
-      }
+  getByIdDivida(id: string): Observable<Divida[]> {
+    const query: HttpParams = new HttpParams().set('id', id);
+    const options = id ? { params: query } : {};
+
+    return this.httpClient.get<Divida[]>(`${RoutesAPI.DIVIDAS}`, options).pipe(
+      catchError(ErrorUtil.handleError)
+    );
+  }
+
+  listDividasByDevedor(devedorId: string): Observable<Divida[]> {
+    const query: HttpParams = new HttpParams().set('devedorId', devedorId);
+    const options = devedorId ? { params: query } : {};
+
+    return this.httpClient.get<Divida[]>(`${RoutesAPI.DIVIDAS}`, options).pipe(
+      catchError(ErrorUtil.handleError)
+    );
+  }
+
+  totalDividas(): Observable<Divida[]> {
+    return this.httpClient.get<Divida[]>(`${RoutesAPI.DIVIDAS}`).pipe(
+      catchError(ErrorUtil.handleError)
+    );
+  }
+
+  save(divida: Divida): Observable<Divida> {
+    return this.httpClient.post<Divida>(
+      `${RoutesAPI.DIVIDAS}`,
+      divida,
+      this.httpOptions
+    );
+  }
+
+  patch(divida: Divida): Observable<Divida> {
+    return this.httpClient.patch<Divida>(
+      `${RoutesAPI.DIVIDAS}/${divida.id}`,
+      divida,
+      this.httpOptions
+    );
+  }
+
+  update(divida: Divida): Observable<Divida> {
+    return this.httpClient.put<Divida>(
+      `${RoutesAPI.DIVIDAS}/${divida.id}`,
+      divida,
+      this.httpOptions
+    );
+  }
+
+  delete(id: string): Observable<any> {
+    return this.httpClient.delete(`${RoutesAPI.DIVIDAS}/${id}`, {
+      responseType: 'text',
     });
-    return d;
   }
 }

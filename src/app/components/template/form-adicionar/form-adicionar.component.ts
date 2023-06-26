@@ -4,7 +4,7 @@ import { Divida } from 'src/app/model/divida';
 import { NgForm } from '@angular/forms';
 import { AdicionarService } from './form-adicionar.service';
 import { Shared } from 'src/app/util/shared';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Devedor } from 'src/app/model/devedor';
 
 @Component({
@@ -20,15 +20,9 @@ export class FormAdicionarComponent {
   devedor!: Devedor;
   devedores: Devedor[] = [];
 
-  isSubmitted!: boolean;
-  isShowMessage: boolean = false;
-  isSuccess!: boolean;
-  message!: string;
-  saveInvalid: boolean = true;
-  time = 0;
-
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private adicionarService: AdicionarService
   ) {}
 
@@ -41,51 +35,45 @@ export class FormAdicionarComponent {
       return t.id === idParam;
     });
     this.devedor = this.devedores[0];
+    this.divida.devedorId = this.devedor.id;
   }
 
   onSubmit() {
-    this.adicionarService
-      .save(this.devedor, this.divida)
-      .then(() => {
-        this.isSuccess = true;
-        this.message =
-          'Dívida cadastrada com sucesso';
-          alert(this.message);
-        this.isSubmitted = true;
-      })
-      .catch((e) => {
-        this.saveInvalid = true;
-        alert((this.message = e));
-      })
-      .finally(() => {
-        console.log('A operação foi concluída');
-      });
+    this.adicionarService.save(this.divida).subscribe(
+      (data: Divida) => {
+        this.divida = data;
+        console.log(this.divida);
+      },
+      (error) => {
+        console.log('componente');
+        console.log(error);
+        alert(error.message);
+      }
+    );
+    this.router.navigate(['resultado', this.divida?.devedorId]);
+  }
 
-      setInterval(() => {
-        this.time++;
-      }, 1000);
-
-      this.onReset()
+  onVoltar() {
+    window. history. back();
   }
 
   onReset() {
-    this.divida = new Divida(0, new Date(), new Date(), false, '');
     this.form.reset();
   }
 
   onEdit(divida: Divida) {
-    //this.divida = Divida;
-    // let clone = divida.clone(divida);
-    // this.divida = clone;
-  }
-
-  onDelete(id: string) {
-    let confirmation = window.confirm(
-      'Deseja realmente excluir a dívida ' + id
+    this.adicionarService.update(divida).subscribe(
+      (data: Divida) => {
+        if (!data) {
+          alert('Nenhum divida com esta id foi encontrado!');
+        }
+        console.log(this.divida);
+      },
+      (error) => {
+        console.log('componente');
+        console.log(error);
+        alert(error.message);
+      }
     );
-    if (!confirmation) {
-      return;
-    }
   }
 }
-

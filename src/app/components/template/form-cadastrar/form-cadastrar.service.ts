@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { WebStorageUtil } from 'src/app/util/web-storage-util';
 import { Devedor } from 'src/app/model/devedor';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CadastrarStorageService {
   devedores!: Devedor[];
 
@@ -19,14 +21,14 @@ export class CadastrarStorageService {
 
   update(devedor: Devedor) {
     this.devedores = WebStorageUtil.get(Constants.DEVEDORES_KEY);
-    this.delete(devedor.nomeourazaosocial);
+    this.delete(devedor.id);
     this.save(devedor);
   }
 
-  delete(nomeourazaosocial: string): boolean {
+  delete(id: string): boolean {
     this.devedores = WebStorageUtil.get(Constants.DEVEDORES_KEY);
     this.devedores = this.devedores.filter((d) => {
-      return d.nomeourazaosocial?.valueOf() != nomeourazaosocial?.valueOf();
+      return d.id?.valueOf() != id?.valueOf();
     });
 
     WebStorageUtil.set(Constants.DEVEDORES_KEY, this.devedores);
@@ -36,14 +38,14 @@ export class CadastrarStorageService {
   isExist(value: string): boolean {
     this.devedores = WebStorageUtil.get(Constants.DEVEDORES_KEY);
     for (let d of this.devedores) {
-      if (d.nomeourazaosocial?.valueOf() == value?.valueOf()) {
+      if (d.id?.valueOf() == value?.valueOf()) {
         return true;
       }
     }
     return false;
   }
 
-  getUsers(): Devedor[] {
+  getDevedores(): Devedor[] {
     this.devedores = WebStorageUtil.get(Constants.DEVEDORES_KEY);
     return this.devedores;
   }

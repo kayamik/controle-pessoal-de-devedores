@@ -22,6 +22,15 @@
           <td>{{ d.totaldividas | currency : "BRL" }}</td>
           <td>{{ d.qtddividas }}</td>
           <td>{{ d.statusdividas }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="onCadastro(d)"
+            >
+              <i class="fas fa-edit">Editar</i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

@@ -20,5 +20,4 @@ export class Divida {
     this.quitado = quitado;
     this.tipodepagamento = tipodepagamento;
   }
-
 }

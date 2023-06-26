@@ -1,4 +1,4 @@
-import { Devedor } from "./devedor";
+import { Devedor } from './devedor';
 
 export class User {
   id!: string;
@@ -12,5 +12,4 @@ export class User {
     this.id = '1';
     this.devedores = [];
   }
-
 }

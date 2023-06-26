@@ -30,15 +30,5 @@ https://www.figma.com/file/wmhi6onVr5eHsoiVv7NHx8/Controle-Pessoal-de-Devedores?
 - [x] Cadastrar uma entidade usando uma API (JSON Server).
 - [x] Apresentar uma lista de dados com a diretiva estrutural ngFor.
 - [x] Usar a diretiva ngIf.
-- [x]
-- [x]
-
-## Manual de execução
-- Clonar o repositório com `git clone`
-- Fazer checkout no branch `develop` que contém as modificações mais recentes
-- Abrir o projeto no editor Visual Studio Code (VS Code)
-- Abrir um terminal pelo VSCode e executar a API Fake (JSON Server) via o seguinte comando: 
-  - Comando: `npm run json-server --watch db.json --routes routes.json`
-  - O comando deve ser aplicado no diretório raiz do projeto, ou seja, que contém o arquivo `db.json` e `routes.json`.
-- Abrir um novo terminal pelo VSCode e então executar o projeto Angular
-  - Comando: `ng s`
+- [x] Formatar a apresentação de dados com Pipes.
+- [ ] Build e deploy da aplicação.

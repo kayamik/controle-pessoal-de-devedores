@@ -136,17 +136,22 @@
     </div>
   </form>
   <br />
+  <button (click)="onVoltar()" class="btn btn-danger">CANCELAR</button>
+  <br />
   <div [hidden]="!this.isSuccess">
     <div class="badge bg-primary text-wrap">
       <h3>
-        Usuário {{ this.devedortemp.nomeourazaosocial }} adicionado com sucesso, caso deseje
-        adicionar alguma dívida clique no botão abaixo.
+        Usuário {{ this.devedortemp.nomeourazaosocial }} adicionado com sucesso,
+        caso deseje adicionar alguma dívida clique no botão abaixo.
       </h3>
     </div>
     <br />
     <br />
     <button class="btn btn-success" (click)="onDividas()">
       ADICIONAR DÍVIDA
+    </button>
+    <button class="btn btn-danger" (click)="onPesquisar()">
+      DADOS DO CADASTRO
     </button>
   </div>
 </main>

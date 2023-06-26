@@ -13,7 +13,5 @@ export class Shared {
 
     localStorage.setItem(Constants.DEVEDORES_KEY, JSON.stringify(devedor));
     localStorage.setItem(Constants.DEVEDOR_KEY, JSON.stringify([]));
-    localStorage.removeItem(Constants.DIVIDA_KEY);
-    localStorage.setItem(Constants.DIVIDAS_KEY, JSON.stringify([]));
   }
 }
