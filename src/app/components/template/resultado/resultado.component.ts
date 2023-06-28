@@ -29,7 +29,10 @@ export class ResultadoComponent implements OnInit {
     private router: Router,
     private adicionarService: AdicionarService,
     private cadastrarService: CadastrarStorageService
-  ) {}
+  ) {
+    this.divida = new Divida(0, new Date(), new Date(), false, '');
+    this.devedor = new Devedor('', '', '');
+  }
 
   ngOnInit(): void {
     this.devedores = JSON.parse(localStorage.getItem('devedores') || '{}');
@@ -89,7 +92,9 @@ export class ResultadoComponent implements OnInit {
       },
       (e) => {
         this.router.navigate(['principal']);
-        alert('Não foi possível excluir as dívidas, tente remover o devedor mais tarde!');
+        alert(
+          'Não foi possível excluir as dívidas, tente remover o devedor mais tarde!'
+        );
       }
     );
   }
@@ -99,7 +104,9 @@ export class ResultadoComponent implements OnInit {
     if (!confirmation) {
       return;
     }
-    this.onDeleteTodasDividas();
+    setTimeout(() => {
+      this.onDeleteTodasDividas();
+    }, 2000);
     let response: boolean = this.cadastrarService.delete(this.devedor.id);
     this.isShowMessage = true;
     this.isSuccess = response;
@@ -112,13 +119,41 @@ export class ResultadoComponent implements OnInit {
   }
 
   onEditDivida(divida: Divida) {
-    alert(divida.id);
-    this.router.navigate(['adicionar', divida?.id]);
+    this.router.navigate(['editar', divida?.id]);
   }
 
   onDeleteTodasDividas() {
     this.dividas.forEach((d) =>
       this.adicionarService.delete(d.id).subscribe((data: Divida) => {})
+    );
+    return;
+  }
+
+  onObterValorDivida(id: string) {
+    this.adicionarService.obterDivida(id).subscribe(
+      (data: Divida) => {
+        let status: boolean = data.quitado;
+        console.log(this.divida);
+        this.devedor.qtddividas--;
+        if (!status) {
+          this.devedor.totaldividas =
+            this.devedor.totaldividas - data.valordoemprestimo;
+          if (this.devedor.totaldividas < 0 || this.devedor.qtddividas < 0) {
+            this.devedor.totaldividas = 0;
+            this.devedor.qtddividas = 0;
+          }
+        }
+        this.cadastrarService.delete(this.devedor.id);
+        this.cadastrarService.save(this.devedor);
+        setTimeout(() => {
+          this.onDeleteDivida(id);
+        }, 1000);
+      },
+      (error) => {
+        console.log('componente');
+        console.log(error);
+        alert(error.message);
+      }
     );
     return;
   }

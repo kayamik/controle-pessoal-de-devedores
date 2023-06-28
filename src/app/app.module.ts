@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatIconModule } from '@angular/material/icon';
 
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,7 +14,7 @@ import { TextAboutComponent } from './components/template/text-about/text-about.
 import { PesquisarComponent } from './components/template/pesquisar/pesquisar.component';
 import { ResultadoComponent } from './components/template/resultado/resultado.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormEditarDividaComponent } from './components/template/form-editar-divida/form-editar-divida.component';
 
 @NgModule({
   declarations: [
@@ -29,14 +28,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TextAboutComponent,
     PesquisarComponent,
     ResultadoComponent,
+    FormEditarDividaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MatIconModule,
-    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

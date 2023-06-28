@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-cards',
@@ -6,5 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./cards.component.css'],
 })
 export class CardsComponent {
-  @Input() valor!: number;
+  @Input() valortotaldividasativas!: number;
+  @Input() totalemprestado!: number;
+  @Input() qtddividasatividas!: number;
 }

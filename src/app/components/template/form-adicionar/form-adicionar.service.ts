@@ -26,6 +26,16 @@ export class AdicionarService {
     );
   }
 
+  obterDivida(id: string): Observable<Divida> {
+    const query: HttpParams = new HttpParams().set('id', id);
+    const options = id ? { params: query } : {};
+
+    return this.httpClient.get<Divida[]>(`${RoutesAPI.DIVIDAS}`, options).pipe(
+      map((dividas: Divida[])=>dividas[0]),
+      catchError(ErrorUtil.handleError)
+    );
+  }
+
   listDividasByDevedor(devedorId: string): Observable<Divida[]> {
     const query: HttpParams = new HttpParams().set('devedorId', devedorId);
     const options = devedorId ? { params: query } : {};

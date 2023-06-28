@@ -1,10 +1,10 @@
 <main>
-  <div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col">
       <div class="card border-light mb-3" style="max-width: 18rem">
         <div class="card-header">Dividas Ativas</div>
         <div class="card-body">
-          <p class="card-text">0</p>
+          <p class="card-text">{{ qtddividasatividas }}</p>
         </div>
       </div>
     </div>
@@ -12,15 +12,9 @@
       <div class="card border-light mb-3" style="max-width: 18rem">
         <div class="card-header">Valor Pendente</div>
         <div class="card-body">
-          <p class="card-text">R$ {{ valor }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card border-light mb-3" style="max-width: 18rem">
-        <div class="card-header">Prazos Expirados</div>
-        <div class="card-body">
-          <p class="card-text">0</p>
+          <p class="card-text">
+            {{ valortotaldividasativas | currency : "BRL" }}
+          </p>
         </div>
       </div>
     </div>
@@ -28,7 +22,7 @@
       <div class="card border-light mb-3" style="max-width: 18rem">
         <div class="card-header">Total Emprestado</div>
         <div class="card-body">
-          <p class="card-text">R$</p>
+          <p class="card-text">{{ totalemprestado | currency : "BRL" }}</p>
         </div>
       </div>
     </div>

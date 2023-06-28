@@ -64,7 +64,7 @@ export class FormCadastrarComponent implements OnInit {
   }
 
   onVoltar() {
-    window. history. back();
+    window.history.back();
   }
 
   onDividas() {

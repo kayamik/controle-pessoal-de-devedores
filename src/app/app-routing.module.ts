@@ -6,6 +6,7 @@ import { TextAboutComponent } from './components/template/text-about/text-about.
 import { FormAdicionarComponent } from './components/template/form-adicionar/form-adicionar.component';
 import { PesquisarComponent } from './components/template/pesquisar/pesquisar.component';
 import { ResultadoComponent } from './components/template/resultado/resultado.component';
+import { FormEditarDividaComponent } from './components/template/form-editar-divida/form-editar-divida.component';
 
 const routes: Routes = [
   { path: '', component: TablePrincipalComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'cadastrar', component: FormCadastrarComponent },
   { path: 'pesquisar', component: PesquisarComponent },
   { path: 'resultado/:id', component: ResultadoComponent },
+  { path: 'editar/:id', component: FormEditarDividaComponent },
   { path: 'adicionar/:id', component: FormAdicionarComponent },
   { path: 'sobre', component: TextAboutComponent },
 ];
