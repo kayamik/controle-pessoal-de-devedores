@@ -1,0 +1,145 @@
+<main>
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <p>Editar Dívida</p>
+    </blockquote>
+  </figure>
+  <main>
+    <form #form="ngForm" (submit)="onSubmit()">
+      <div class="form-group row">
+        <label for="inputValor" class="col-sm-2 col-form-label"
+          >Valor Emprestado</label
+        >
+        <div class="col-sm-10">
+          <input
+            type="number"
+            class="form-control"
+            id="inputValor"
+            name="inputValor"
+            placeholder="Digite o valor emprestado"
+            [(ngModel)]="this.divida.valordoemprestimo"
+            #valordoemprestimo="ngModel"
+            required
+          />
+        </div>
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          valordoemprestimo.invalid &&
+          (valordoemprestimo.dirty || valordoemprestimo.touched)
+        "
+      >
+        Por favor, informe o valor emprestado.
+      </div>
+      <div class="form-group row">
+        <label for="inputDataEmprestimo" class="col-sm-2 col-form-label"
+          >Data do Empréstimo</label
+        >
+        <div class="col-sm-10">
+          <input
+            type="date"
+            class="form-control"
+            id="inputDataEmprestimo"
+            name="inputDataEmprestimo"
+            placeholder="Digite a data do emprestimo"
+            [(ngModel)]="this.divida.datadoemprestimo"
+            #datadoemprestimo="ngModel"
+            required
+          />
+        </div>
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          datadoemprestimo.invalid &&
+          (datadoemprestimo.dirty || datadoemprestimo.touched)
+        "
+      >
+        Por favor, adicione a data de emprestimo corretamente.
+      </div>
+      <div class="form-group row">
+        <label for="inputDataRecebimento" class="col-sm-2 col-form-label"
+          >Data da Devolução</label
+        >
+        <div class="col-sm-10">
+          <input
+            type="date"
+            class="form-control"
+            id="inputDataRecebimento"
+            name="inputDataRecebimento"
+            placeholder="Digite a data combinada de devolução"
+            [(ngModel)]="this.divida.datadadevolucao"
+            #datadadevolucao="ngModel"
+            required
+          />
+        </div>
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          datadadevolucao.invalid &&
+          (datadadevolucao.dirty || datadadevolucao.touched)
+        "
+      >
+        Por favor, adicione a data de devolução.
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2">Status da Dívida</div>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="inputStatus"
+              name="inputStatus"
+              [(ngModel)]="this.divida.quitado"
+            />
+            <label class="form-check-label" for="inputStatus"> Quitado </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-4">
+          <label for="inputTipoPagamento" class="form-label"
+            >Tipo de Pagamento</label
+          >
+          <select
+            id="inputTipoPagamento"
+            class="form-select"
+            name="inputTipoPagamento"
+            [(ngModel)]="this.divida.tipodepagamento"
+            #tipodepagamento="ngModel"
+            required
+          >
+            <option selected>Selecione...</option>
+            <option>Pix</option>
+            <option>Dinheiro</option>
+            <option>Débito</option>
+            <option>Crédito</option>
+          </select>
+        </div>
+      </div>
+      <div
+        class="text-danger"
+        [hidden]="tipodepagamento.valid || tipodepagamento.touched"
+      >
+        Por favor, selecione um tipo de pagamento.
+      </div>
+      <p></p>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!form.valid"
+          >
+            ATUALIZAR
+          </button>
+        </div>
+      </div>
+    </form>
+    <br />
+    <button (click)="onVoltar()" class="btn btn-secondary">CANCELAR</button>
+  </main>
+</main>

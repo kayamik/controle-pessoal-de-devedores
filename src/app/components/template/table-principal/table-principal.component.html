@@ -1,0 +1,44 @@
+<app-cards *ngIf="this.user"
+  [totalemprestado]="this.user.totalemprestado"
+  [valortotaldividasativas]="this.user.valortotalpendente"
+  [qtddividasatividas]="this.user.qtddividasativas"
+></app-cards>
+
+<main *ngIf="this.devedores && this.devedores.length > 0">
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <p>Lista de Devedores</p>
+    </blockquote>
+  </figure>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Pendente</th>
+          <th scope="col">Quantidade</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of this.devedores">
+          <td>{{ d.id }}</td>
+          <td>{{ d.nomeourazaosocial | uppercase }}</td>
+          <td>{{ d.totaldividas | currency : "BRL" }}</td>
+          <td>{{ d.qtddividas }}</td>
+          <td>{{ d.statusdividas }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="onCadastro(d)"
+            >
+              <i class="fas fa-edit">Editar</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
