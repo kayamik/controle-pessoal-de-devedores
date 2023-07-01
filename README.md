@@ -4,13 +4,17 @@ Este projeto tem como objetivo implementar progressivamente e de forma didática
 
 O frontend da aplicação foi desenvolvido com Angular e o backend foi simulado pela implementação de uma API Fake, usando o JSON Server.
 
-## Endereço de Deploy - GitHub Pages
-
-https://github.com/kayamik/controle-pessoal-de-devedores
-
 ## Protótipo
 
 https://www.figma.com/file/wmhi6onVr5eHsoiVv7NHx8/Controle-Pessoal-de-Devedores?type=design&node-id=7%3A61&t=DeF7IFXpcFcqsLmR-1
+
+## Endereço de Deploy - GitHub Pages
+
+https://kayamik.github.io/controle-pessoal-de-devedores/
+
+## Apresentação do Projeto
+
+https://www.youtube.com/watch?v=UgpXluB5cZc
 
 ## Checklist
 
